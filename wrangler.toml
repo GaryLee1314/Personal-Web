@@ -1,6 +1,6 @@
-name = "lishenghuatools"
+name = "personal-web"
 compatibility_date = "2026-05-08"
-pages_build_output_dir = "dist"
+pages_build_output_dir = "."
 
 [[d1_databases]]
 binding = "DB"
