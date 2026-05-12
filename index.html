@@ -1,53 +1,726 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="李胜华工具箱 - 提供丰富实用的在线工具集合与优质站点导航，提高工作与开发效率。" />
-    <meta name="keywords" content="李胜华, 工具箱, 开发者工具, 在线工具, 优质导航, 效率工具, 站点导航" />
-    <meta name="author" content="李胜华" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://tools.lishenghua.com/" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://tools.lishenghua.com/" />
-    <meta property="og:site_name" content="李胜华工具箱" />
-    <meta property="og:title" content="李胜华工具箱" />
-    <meta property="og:description" content="提供丰富实用的在线工具集合与优质站点导航，提高工作与开发效率。" />
-    <meta property="og:image" content="https://tools.lishenghua.com/favicon.png" />
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="李胜华工具箱" />
-    <meta name="twitter:description" content="提供丰富实用的在线工具集合与优质站点导航，提高工作与开发效率。" />
-    <meta name="twitter:image" content="https://tools.lishenghua.com/favicon.png" />
 
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "李胜华工具箱",
-        "url": "https://tools.lishenghua.com/",
-        "description": "李胜华工具箱提供在线工具、开发者工具、效率工具与优质站点导航。",
-        "inLanguage": "zh-CN",
-        "publisher": {
-          "@type": "Person",
-          "name": "李胜华"
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BM-Tools | 高效工具集合平台</title>
+    <meta name="description" content="BM-Tools 提供视频聚合、视频下载等高效在线工具，打造极致用户体验。" />
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+
+    <!-- 字体预连接 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Space+Grotesk:wght@500;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@300,1&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                        mono: ['"Space Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fcfaff',
+                            100: '#f8f5fc',
+                            200: '#e5e0f5',
+                            400: '#a894df',
+                            500: '#7e5adc',
+                            900: '#2b1b54',
+                        },
+                        neon: '#6d28d9'
+                    }
+                }
+            }
         }
-      }
     </script>
 
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
-    <title>李胜华工具箱</title>
-  </head>
-  <body>
-    <noscript>
-      <h1>李胜华工具箱</h1>
-      <p>提供在线工具、开发者工具、效率工具与优质站点导航。</p>
-    </noscript>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- 背景装饰 -->
+    <div class="ambient-mesh"></div>
+    <div class="dot-matrix"></div>
+
+    <!-- ========== 顶部导航 ========== -->
+    <nav class="cyber-nav">
+        <!-- 品牌标识 -->
+        <div class="hidden sm:flex items-center gap-2 mr-2">
+            <div class="w-8 h-8 rounded-full border-2 border-brand-200 overflow-hidden shadow-sm">
+                <img src="assets/favicon.png" alt="Logo" class="w-full h-full object-cover">
+            </div>
+            <div class="font-display font-black text-brand-900 px-2 tracking-wider uppercase">BM<span
+                    class="text-brand-500"> Tools</span></div>
+        </div>
+
+        <!-- 导航链接 -->
+        <div
+            class="hidden md:flex gap-6 border-r border-brand-200 pr-6 mr-3 font-mono text-xs font-bold tracking-widest text-gray-500">
+            <a href="#" class="hover:text-brand-900 transition-colors" data-i18n-key="nav_home">主页</a>
+            <a href="/projects/personal-blog/" class="hover:text-brand-900 transition-colors"
+                data-i18n-key="nav_blog">博客</a>
+            <a href="/projects/personal-blog/#/about" class="hover:text-brand-900 transition-colors"
+                data-i18n-key="nav_auth">关于我</a>
+        </div>
+
+        <!-- 语言切换 -->
+        <div class="lang-toggle" id="lang-switch-btn" title="Toggle Locale">
+            <div class="lang-slider"></div>
+            <div class="lang-label font-sans">中</div>
+            <div class="lang-label font-sans">EN</div>
+        </div>
+
+        <!-- 移动端菜单按钮 -->
+        <button id="mobile-trigger"
+            class="md:hidden flex items-center justify-center w-10 h-10 ml-2 rounded-full bg-white border border-brand-200 shadow-sm text-brand-500">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+    </nav>
+
+    <!-- ========== 移动端抽屉菜单 ========== -->
+    <div id="mobile-backdrop"></div>
+    <div id="mobile-drawer">
+        <div class="flex justify-between items-center mb-8 pb-4 border-b border-brand-200">
+            <div class="font-display font-black text-brand-900 tracking-wider uppercase text-xl">Menu<span
+                    class="text-brand-500">.</span></div>
+            <button id="mobile-close"
+                class="w-10 h-10 flex items-center justify-center rounded-full bg-brand-50 text-brand-900 shadow hover:bg-brand-500 hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-xl">close</span>
+            </button>
+        </div>
+        <div class="flex flex-col mt-2">
+            <div class="menu-item" data-i18n-key="nav_home">主页</div>
+            <a href="/projects/personal-blog/" class="menu-item" data-i18n-key="nav_blog">博客</a>
+            <a href="/projects/personal-blog/#/about" class="menu-item" data-i18n-key="nav_auth">关于我</a>
+        </div>
+    </div>
+
+    <!-- ========== 3D 解构 Bento 网格布局 ========== -->
+    <main class="pt-36 max-w-7xl mx-auto px-6 pb-40 relative">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 auto-rows-[280px]" id="bento-grid">
+
+            <!-- 卡片 1: BMVideo 视频聚合平台 -->
+            <a href="https://video.lsh.indevs.in/" target="_blank"
+                class="gsap-reveal col-span-1 md:col-span-2 row-span-2 block cursor-pointer group">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor relative overflow-hidden">
+                        <div class="v-layer v-base" style="background: #0f0f15; box-shadow: none; overflow: hidden;">
+                            <div class="screenshot-scroll-container">
+                                <img class="scroll-cover" src="assets/videopage.png" alt="BMVideo 封面">
+                                <img class="scroll-long" src="assets/benmaovideo.png" alt="BMVideo 网站预览" loading="lazy">
+                            </div>
+                            <div
+                                class="absolute inset-0 z-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent transition-opacity duration-500 opacity-90 group-hover:opacity-50 pointer-events-none">
+                            </div>
+                        </div>
+                        <div class="v-layer v-glass !border-none hidden"></div>
+                        <div class="v-layer v-content z-10 flex flex-col justify-between">
+                            <div class="v-icon mb-10 overflow-hidden shadow-none transition-transform duration-700 group-hover:translate-x-3 group-hover:-translate-y-3"
+                                style="background: transparent !important; color: white !important;"><span
+                                    class="material-symbols-outlined text-4xl text-white drop-shadow-md">video_library</span>
+                            </div>
+                            <div class="mt-auto drop-shadow-xl text-white z-20 relative">
+                                <h2 class="font-display text-3xl md:text-4xl font-black mb-1"
+                                    style="text-shadow: 0 4px 20px rgba(0,0,0,1);" data-i18n-key="c1_tit">
+                                    BMVideo视频聚合平台
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 卡片 2: Aura 电商网站 -->
+            <a href="https://catingking.de5.net/" target="_blank"
+                class="gsap-reveal col-span-1 md:col-span-2 row-span-2 block cursor-pointer group">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor relative overflow-hidden">
+                        <div class="v-layer v-base" style="background: #f5f0eb; box-shadow: none; overflow: hidden;">
+                            <div class="screenshot-scroll-container">
+                                <img class="scroll-cover" src="assets/catingking.png" alt="Aura 封面"
+                                    style="object-position: top;">
+                                <img class="scroll-long" src="assets/catingking.png" alt="Aura 网站预览" loading="lazy">
+                            </div>
+                            <div
+                                class="absolute inset-0 z-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500 opacity-70 group-hover:opacity-40 pointer-events-none">
+                            </div>
+                        </div>
+                        <div class="v-layer v-glass !border-none hidden"></div>
+                        <div class="v-layer v-content z-10 flex flex-col justify-between">
+                            <div class="v-icon mb-10 overflow-hidden shadow-none transition-transform duration-700 group-hover:translate-x-3 group-hover:-translate-y-3"
+                                style="background: transparent !important; color: white !important;"><span
+                                    class="material-symbols-outlined text-4xl text-white drop-shadow-md">storefront</span>
+                            </div>
+                            <div class="mt-auto drop-shadow-xl text-white z-20 relative">
+                                <h2 class="font-display text-3xl md:text-4xl font-black mb-1"
+                                    style="text-shadow: 0 4px 20px rgba(0,0,0,1);" data-i18n-key="c22_tit">Aura
+                                    有机科技商城
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 卡片 Blog: 个人博客 (Aura 风格封面卡片) -->
+            <a href="/projects/personal-blog/"
+                class="gsap-reveal col-span-1 md:col-span-2 row-span-2 block cursor-pointer group">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor relative overflow-hidden">
+                        <div class="v-layer v-base" style="background: #faf9f6; box-shadow: none; overflow: hidden;">
+                            <div class="screenshot-scroll-container">
+                                <img class="scroll-cover" src="assets/personal_blog.png" alt="Blog 封面"
+                                    style="object-position: top;">
+                                <img class="scroll-long" src="assets/personal_blog.png" alt="Blog 网站预览" loading="lazy">
+                            </div>
+                            <div
+                                class="absolute inset-0 z-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500 opacity-70 group-hover:opacity-40 pointer-events-none">
+                            </div>
+                        </div>
+                        <div class="v-layer v-glass !border-none hidden"></div>
+                        <div class="v-layer v-content z-10 flex flex-col justify-between">
+                            <div class="v-icon mb-10 overflow-hidden shadow-none transition-transform duration-700 group-hover:translate-x-3 group-hover:-translate-y-3"
+                                style="background: transparent !important; color: white !important;"><span
+                                    class="material-symbols-outlined text-4xl text-amber-300 drop-shadow-md">edit_note</span>
+                            </div>
+                            <div class="mt-auto drop-shadow-xl text-white z-20 relative">
+                                <h2 class="font-display text-3xl md:text-4xl font-black mb-1"
+                                    style="text-shadow: 0 4px 20px rgba(0,0,0,1);" data-i18n-key="c_blog_tit">Notes on a
+                                    Quieter Life
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 卡片 3: 视频下载 -->
+            <a href="https://download.lsh.indevs.in/" target="_blank"
+                class="gsap-reveal col-span-1 md:col-span-2 row-span-2 block cursor-pointer group">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor relative overflow-hidden">
+                        <div class="v-layer v-base" style="background: #111827; box-shadow: none;">
+                            <div class="gif-preview-container">
+                                <img class="gif-static" src="assets/download.png" alt="Video Download 静态预览">
+                                <img class="gif-animated" src="assets/download_video.gif" alt="Video Download 操作演示"
+                                    loading="lazy">
+                            </div>
+                        </div>
+                        <div
+                            class="absolute inset-0 z-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent transition-opacity duration-500 opacity-80 group-hover:opacity-40 pointer-events-none">
+                        </div>
+                        <div class="v-layer v-glass !border-none hidden"></div>
+                        <div class="v-layer v-content z-10 flex flex-col justify-between">
+                            <div class="v-icon mb-10 overflow-hidden shadow-none transition-transform duration-700 group-hover:translate-x-3 group-hover:-translate-y-3"
+                                style="background: transparent !important; color: white !important;">
+                                <span
+                                    class="material-symbols-outlined text-4xl text-white drop-shadow-md">cloud_download</span>
+                            </div>
+                            <div class="mt-auto drop-shadow-xl text-white z-20 relative">
+                                <h2 class="font-display text-3xl md:text-4xl font-black mb-1"
+                                    style="text-shadow: 0 4px 20px rgba(0,0,0,1);" data-i18n-key="c2_tit">视频下载
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 卡片 23: Prism Hair 子项目 (站内导航) -->
+            <a href="/projects/prism-hair/"
+                class="gsap-reveal col-span-1 md:col-span-2 row-span-2 block cursor-pointer group">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor relative overflow-hidden">
+                        <div class="v-layer v-base" style="background: #0a0a0a; box-shadow: none; overflow: hidden;">
+                            <div
+                                class="w-full h-full transform transition-transform duration-700 group-hover:scale-105">
+                                <img class="w-full h-full object-cover object-center" src="assets/prism_hair.png"
+                                    alt="Prism Hair 预览" loading="lazy">
+                            </div>
+                            <div
+                                class="absolute inset-0 z-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent transition-opacity duration-500 opacity-90 group-hover:opacity-60 pointer-events-none">
+                            </div>
+                        </div>
+                        <div class="v-layer v-glass !border-none hidden"></div>
+                        <div class="v-layer v-content z-10 flex flex-col justify-between">
+                            <div class="v-icon mb-10 overflow-hidden shadow-none transition-transform duration-700 group-hover:translate-x-3 group-hover:-translate-y-3"
+                                style="background: transparent !important; color: white !important;"><span
+                                    class="material-symbols-outlined text-4xl text-emerald-400 drop-shadow-[0_0_10px_rgba(52,211,153,0.8)]">palette</span>
+                            </div>
+                            <div class="mt-auto drop-shadow-xl text-white z-20 relative">
+                                <h2 class="font-display text-3xl md:text-4xl font-black mb-1"
+                                    style="text-shadow: 0 4px 20px rgba(0,0,0,1);" data-i18n-key="c23_tit">实时AI发丝渲染
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 卡片 25: Soul Prism 性格测试 -->
+            <a href="/projects/soul-prism/"
+                class="gsap-reveal col-span-1 md:col-span-2 row-span-2 block cursor-pointer group">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor relative overflow-hidden">
+                        <div class="v-layer v-base" style="background: #110e20; box-shadow: none; overflow: hidden;">
+                            <div
+                                class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-500 scale-150">
+                                <div
+                                    class="absolute w-32 h-32 rounded-full border-[10px] border-brand-500/20 blur-md animate-[spin_10s_linear_infinite]">
+                                </div>
+                                <div
+                                    class="absolute w-24 h-24 rounded-full border border-white/30 animate-[spin_7s_linear_infinite_reverse]">
+                                </div>
+                                <div class="absolute w-16 h-16 rounded-full bg-brand-500/40 blur-xl"></div>
+                                <div class="absolute w-2 h-2 rounded-full bg-white shadow-[0_0_20px_rgb(255,255,255)]">
+                                </div>
+                            </div>
+                            <div
+                                class="absolute inset-0 z-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent transition-opacity duration-500 opacity-90 group-hover:opacity-60 pointer-events-none">
+                            </div>
+                        </div>
+                        <div class="v-layer v-glass !border-none hidden"></div>
+                        <div class="v-layer v-content z-10 flex flex-col justify-between">
+                            <div class="v-icon mb-10 overflow-hidden shadow-none transition-transform duration-700 group-hover:translate-x-3 group-hover:-translate-y-3"
+                                style="background: transparent !important; color: white !important;"><span
+                                    class="material-symbols-outlined text-4xl text-brand-400 drop-shadow-[0_0_10px_rgba(126,90,220,0.8)]">psychology</span>
+                            </div>
+                            <div class="mt-auto drop-shadow-xl text-white z-20 relative">
+                                <h2 class="font-display text-3xl md:text-3xl lg:text-4xl font-black mb-1 text-transparent bg-clip-text bg-gradient-to-r from-white to-brand-300"
+                                    style="text-shadow: 0 4px 20px rgba(0,0,0,1);" data-i18n-key="c25_tit">Soul Prism
+                                    灵魂棱镜
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 卡片 26: Gemini AI 去水印工具 -->
+            <a href="/projects/watermark-remover/?renew=1"
+                class="gsap-reveal col-span-1 md:col-span-2 row-span-2 block cursor-pointer group">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor relative overflow-hidden">
+                        <div class="v-layer v-base" style="background: #f0fdf4; box-shadow: none; overflow: hidden;">
+                            <div class="screenshot-scroll-container">
+                                <img class="scroll-cover" src="assets/watermark_remover.png" alt="Watermark Remover 封面"
+                                    style="object-position: top;">
+                                <img class="scroll-long" src="assets/watermark_remover.png" alt="Watermark Remover 预览"
+                                    loading="lazy">
+                            </div>
+                            <div
+                                class="absolute inset-0 z-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent transition-opacity duration-500 opacity-75 group-hover:opacity-45 pointer-events-none">
+                            </div>
+                        </div>
+                        <div class="v-layer v-glass !border-none hidden"></div>
+                        <div class="v-layer v-content z-10 flex flex-col justify-between">
+                            <div class="v-icon mb-10 overflow-hidden shadow-none transition-transform duration-700 group-hover:translate-x-3 group-hover:-translate-y-3"
+                                style="background: transparent !important; color: white !important;"><span
+                                    class="material-symbols-outlined text-4xl text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.8)]">auto_fix_high</span>
+                            </div>
+                            <div class="mt-auto drop-shadow-xl text-white z-20 relative">
+                                <h2 class="font-display text-3xl md:text-4xl font-black mb-1"
+                                    style="text-shadow: 0 4px 20px rgba(0,0,0,1);" data-i18n-key="c26_tit">Gemini AI 去水印
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 卡片 24: 抖音专用下载 (外部 API) -->
+            <a href="https://douyin.lsh.indevs.in/" target="_blank"
+                class="gsap-reveal col-span-1 md:col-span-2 row-span-2 block cursor-pointer group">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor relative overflow-hidden">
+                        <div class="v-layer v-base" style="background: #010101; box-shadow: none;">
+                            <div class="gif-preview-container">
+                                <img class="gif-static" src="assets/douyin_page.png" alt="Douyin Download 静态预览">
+                                <img class="gif-animated" src="assets/douyin.gif" alt="Douyin Download 操作演示"
+                                    loading="lazy">
+                            </div>
+                        </div>
+                        <div
+                            class="absolute inset-0 z-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-500 opacity-80 group-hover:opacity-40 pointer-events-none">
+                        </div>
+                        <div class="v-layer v-glass !border-none hidden"></div>
+                        <div class="v-layer v-content z-10 flex flex-col justify-between">
+                            <div class="v-icon mb-10 overflow-hidden shadow-none transition-transform duration-700 group-hover:translate-x-3 group-hover:-translate-y-3"
+                                style="background: transparent !important; color: white !important;">
+                                <span
+                                    class="material-symbols-outlined text-5xl text-[#fe2c55] drop-shadow-md">file_download</span>
+                            </div>
+                            <div class="mt-auto drop-shadow-xl text-white z-20 relative">
+                                <h2 class="font-display text-3xl md:text-4xl font-black mb-1"
+                                    style="text-shadow: 0 4px 20px rgba(0,0,0,1);" data-i18n-key="c24_tit">抖音无水印下载
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <!-- 卡片 4: 流媒体协议 -->
+            <div class="gsap-reveal col-span-1 row-span-1">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-col items-start justify-between">
+                            <div class="v-icon"><span class="material-symbols-outlined text-3xl">leak_add</span></div>
+                            <div class="mt-auto">
+                                <div class="font-mono text-[10px] tracking-widest mb-1">[ SYNC_MOD ]</div>
+                                <h3 class="font-display text-xl font-black mb-1" data-i18n-key="c6_tit">流媒体协议</h3>
+                                <p class="text-xs leading-relaxed" data-i18n-key="c6_sub">保证分离的三维卡片维持极快的信息推流同步。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 5: 拓扑粘压 -->
+            <div class="gsap-reveal col-span-1 row-span-1">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-col justify-between items-end text-right">
+                            <div class="v-icon"><span class="material-symbols-outlined text-xl">science</span></div>
+                            <div class="mt-auto">
+                                <h3 class="font-display text-xl font-black mb-1" data-i18n-key="c3_tit">拓扑粘压</h3>
+                                <p class="text-xs" data-i18n-key="c3_sub">高弹物理碰撞模型</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 6: 引力场堆栈（竖向卡片） -->
+            <div class="gsap-reveal col-span-1 row-span-2">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-display text-2xl font-black mb-2 mt-4" data-i18n-key="c4_tit">引力场堆栈
+                                </h3>
+                                <p class="text-sm" data-i18n-key="c4_sub">全维度数据隔离存储终端，保障视觉不发生干涉。基于加密。</p>
+                            </div>
+                            <div class="v-icon self-center w-20 h-20 rounded-full mt-auto mb-4 border-dashed border-2">
+                                <span class="material-symbols-outlined text-4xl">dns</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 7: 全息指纹 -->
+            <div class="gsap-reveal col-span-1 row-span-1">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-col justify-between items-center text-center">
+                            <div class="v-icon"><span class="material-symbols-outlined text-xl">fingerprint</span>
+                            </div>
+                            <div class="mt-4">
+                                <h3 class="font-display text-lg font-black mb-1" data-i18n-key="c5_tit">全息指纹</h3>
+                                <p class="text-xs" data-i18n-key="c5_sub">空间波动捕捉</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 8: 量子加密阵列 -->
+            <div class="gsap-reveal col-span-1 row-span-1">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-col justify-between">
+                            <div class="v-icon"><span class="material-symbols-outlined text-xl">lock</span></div>
+                            <div>
+                                <h3 class="font-display text-xl font-black mb-1" data-i18n-key="c7_tit">量子加密阵列</h3>
+                                <p class="text-xs font-medium" data-i18n-key="c7_sub">反破译安全锁柜</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 9: 音频脉冲合成 -->
+            <div class="gsap-reveal col-span-1 row-span-1">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-col justify-between items-end text-right">
+                            <div class="v-icon"><span class="material-symbols-outlined text-xl">graphic_eq</span></div>
+                            <div>
+                                <h3 class="font-display text-xl font-black mb-1" data-i18n-key="c8_tit">音频脉冲合成</h3>
+                                <p class="text-xs font-medium" data-i18n-key="c8_sub">声学震动放大器</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 10: 模型重塑仪（竖向卡片） -->
+            <div class="gsap-reveal col-span-1 row-span-2">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-display text-2xl font-black mb-2 mt-2" data-i18n-key="c9_tit">模型重塑仪
+                                </h3>
+                                <p class="text-sm" data-i18n-key="c9_sub">用于构建三维数字拓扑实体阵列。</p>
+                            </div>
+                            <div class="v-icon self-center w-16 h-16 rounded-[1rem] mt-auto"><span
+                                    class="material-symbols-outlined text-3xl">view_in_ar</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 11: 神经网络桥接（宽卡片） -->
+            <div class="gsap-reveal col-span-1 md:col-span-2 row-span-1">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-row items-center justify-between">
+                            <div class="v-icon"><span class="material-symbols-outlined text-3xl">route</span></div>
+                            <div class="text-right">
+                                <h3 class="font-display text-2xl font-black mb-1" data-i18n-key="c10_tit">神经网络桥接</h3>
+                                <p class="text-xs" data-i18n-key="c10_sub">链接远端跨宇宙集群节点</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 12: 像素坍缩引擎 -->
+            <div class="gsap-reveal col-span-1 row-span-1">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-col justify-between items-center text-center">
+                            <div class="v-icon"><span class="material-symbols-outlined text-xl">grid_view</span></div>
+                            <div>
+                                <h3 class="font-display text-lg font-black mb-1" data-i18n-key="c11_tit">像素坍缩引擎</h3>
+                                <p class="text-xs" data-i18n-key="c11_sub">超密集位图压缩</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 13: 时光回溯归档（超大卡片） -->
+            <div class="gsap-reveal col-span-1 md:col-span-2 row-span-2">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-col items-center justify-center text-center px-10">
+                            <div class="v-icon w-28 h-28 rounded-full mb-8"><span
+                                    class="material-symbols-outlined text-6xl">history</span></div>
+                            <h2 class="font-display text-4xl font-black mb-4" data-i18n-key="c12_tit">时光回溯归档</h2>
+                            <p class="font-medium text-sm leading-relaxed" data-i18n-key="c12_sub">
+                                捕获系统运行期间的每一次时空残影，进行超高频的数据库容错比对。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 14: 零重力实验室 -->
+            <div class="gsap-reveal col-span-1 row-span-1">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-col justify-between">
+                            <div class="v-icon"><span class="material-symbols-outlined text-xl">rocket_launch</span>
+                            </div>
+                            <div>
+                                <h3 class="font-display text-xl font-black mb-1" data-i18n-key="c13_tit">零重力实验室</h3>
+                                <p class="text-xs" data-i18n-key="c13_sub">物理阻力减半区</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 15: 微米级游标 -->
+            <div class="gsap-reveal col-span-1 row-span-1">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-col justify-between items-end text-right">
+                            <div class="v-icon"><span class="material-symbols-outlined text-xl">straighten</span></div>
+                            <div>
+                                <h3 class="font-display text-xl font-black mb-1" data-i18n-key="c14_tit">微米级游标</h3>
+                                <p class="text-xs" data-i18n-key="c14_sub">精准的排版度量尺</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 16: 动态张量分析（竖向卡片） -->
+            <div class="gsap-reveal col-span-1 row-span-2">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-col justify-between">
+                            <div class="v-icon self-center w-16 h-16"><span
+                                    class="material-symbols-outlined text-3xl">bubble_chart</span></div>
+                            <div class="text-center">
+                                <h3 class="font-display text-2xl font-black mb-2 mt-4" data-i18n-key="c15_tit">动态张量分析
+                                </h3>
+                                <p class="text-xs" data-i18n-key="c15_sub">数据可视化处理气泡。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 17: 几何光场追踪 -->
+            <div class="gsap-reveal col-span-1 row-span-1">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-col justify-between">
+                            <div class="v-icon"><span class="material-symbols-outlined text-xl">flare</span></div>
+                            <div>
+                                <h3 class="font-display text-lg font-black mb-1" data-i18n-key="c16_tit">几何光场追踪</h3>
+                                <p class="text-xs" data-i18n-key="c16_sub">全局光影折射</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 18: 深网节点嗅探 -->
+            <div class="gsap-reveal col-span-1 row-span-1">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-col justify-between items-center text-center">
+                            <div class="v-icon"><span class="material-symbols-outlined text-xl">radar</span></div>
+                            <div>
+                                <h3 class="font-display text-lg font-black mb-1" data-i18n-key="c17_tit">深网节点嗅探</h3>
+                                <p class="text-xs" data-i18n-key="c17_sub">数据包声纳雷达</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 19: 生物特征矩阵 -->
+            <div class="gsap-reveal col-span-1 row-span-1">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-col justify-between">
+                            <div class="v-icon"><span class="material-symbols-outlined text-xl">fingerprint</span>
+                            </div>
+                            <div>
+                                <h3 class="font-display text-lg font-black mb-1" data-i18n-key="c18_tit">生物特征矩阵</h3>
+                                <p class="text-xs" data-i18n-key="c18_sub">DNA 级别的锁存</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 20: 虚空接口封装 -->
+            <div class="gsap-reveal col-span-1 row-span-1">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-col justify-between items-end text-right">
+                            <div class="v-icon"><span
+                                    class="material-symbols-outlined text-xl">settings_input_component</span></div>
+                            <div>
+                                <h3 class="font-display text-lg font-black mb-1" data-i18n-key="c19_tit">虚空接口封装</h3>
+                                <p class="text-xs" data-i18n-key="c19_sub">模块化解耦插槽</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 21: 无底动能引擎（宽卡片） -->
+            <div class="gsap-reveal col-span-1 md:col-span-2 row-span-1">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-row items-center justify-between">
+                            <div class="v-icon w-20 h-20 rounded-full"><span
+                                    class="material-symbols-outlined text-4xl">storm</span></div>
+                            <div class="text-right">
+                                <h3 class="font-display text-2xl font-black mb-1" data-i18n-key="c20_tit">无底动能引擎</h3>
+                                <p class="text-xs" data-i18n-key="c20_sub">持续输出过载张量数据</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片 22: 灾难级容灾舱（宽卡片） -->
+            <div class="gsap-reveal col-span-1 md:col-span-2 row-span-1">
+                <div class="v-card-wrapper" data-tilt>
+                    <div class="v-card-anchor">
+                        <div class="v-layer v-base"></div>
+                        <div class="v-layer v-glass"></div>
+                        <div class="v-layer v-content flex flex-row items-center justify-between">
+                            <div>
+                                <div class="font-mono text-[10px] tracking-widest mb-1">[ OMEGA_PROTOCOL ]</div>
+                                <h3 class="font-display text-2xl font-black mb-1" data-i18n-key="c21_tit">灾难级容灾舱</h3>
+                                <p class="text-xs mt-1" data-i18n-key="c21_sub">在网络崩溃时提供亚秒级的数据切面备份。</p>
+                            </div>
+                            <div class="v-icon border-dashed"><span
+                                    class="material-symbols-outlined text-3xl">security_update</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ========== 外部脚本 ========== -->
+    <!-- GSAP 动画库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- UI 与动画逻辑脚本 -->
+    <script src="js/main.js"></script>
+    <!-- 应用模块 -->
+    <script src="js/i18n.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
 </html>
