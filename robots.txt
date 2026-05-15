@@ -1,0 +1,6 @@
+# robots.txt for lishenghua.com
+User-agent: *
+Allow: /
+
+# 站点地图
+Sitemap: https://lishenghua.com/sitemap.xml

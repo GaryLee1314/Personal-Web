@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- 首页 -->
+  <url>
+    <loc>https://lishenghua.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- 个人博客 -->
+  <url>
+    <loc>https://lishenghua.com/projects/personal-blog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Prism Hair AI发丝渲染 -->
+  <url>
+    <loc>https://lishenghua.com/projects/prism-hair/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Soul Prism 灵魂棱镜 -->
+  <url>
+    <loc>https://lishenghua.com/projects/soul-prism/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Gemini AI 去水印工具 -->
+  <url>
+    <loc>https://lishenghua.com/projects/watermark-remover/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>

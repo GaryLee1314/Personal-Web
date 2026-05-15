@@ -1,0 +1,5 @@
+# 全站 SEO 友好的 HTTP 头
+/*
+  X-Robots-Tag: index, follow
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN

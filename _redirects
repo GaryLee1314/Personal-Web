@@ -1,0 +1,7 @@
+# www 重定向到非 www（解决重复网页和自动重定向问题）
+https://www.lishenghua.com/* https://lishenghua.com/:splat 301
+http://www.lishenghua.com/* https://lishenghua.com/:splat 301
+http://lishenghua.com/* https://lishenghua.com/:splat 301
+
+# tools 子域名重定向到主域（解决已发现-尚未编入索引问题）
+https://tools.lishenghua.com/* https://lishenghua.com/:splat 301
